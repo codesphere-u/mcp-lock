@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-lock"
+version = "0.1.0"
+description = "Cryptographic mcp-lock.json tool-schema pinning, anti-rug-pull drift verification, tool-description poisoning detection, and least-privilege capability auditor for MCP servers."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "ai-security",
+    "supply-chain-security",
+    "lockfile",
+    "rug-pull",
+    "tool-poisoning",
+    "ai-agents",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+mcp-lock = "mcp_lock.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/mcp-lock"
+Repository = "https://github.com/codesphere-u/mcp-lock"
+Issues = "https://github.com/codesphere-u/mcp-lock/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_lock"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["mcp_lock"]
